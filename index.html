@@ -4,31 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARCHIVE & INFO</title>
-  <!-- 모던한 산세리프 & 고정폭 폰트 불러오기 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-color: #F4F7F5;        /* 차분한 오프화이트-그린 배경 */
-      --surface: #FFFFFF;         /* 순백색 카드 표면 */
-      --surface-sub: #F9FBFA;     /* 텍스트 박스 내부 배경 */
-      --primary: #143D2B;         /* 딥 포레스트 그린 (메인 포인트) */
-      --primary-hover: #1E563D;   /* 호버 시 그린 */
-      --accent-soft: #E6F0EC;     /* 연한 세이지 그린 배경 */
-      --border-strong: #143D2B;   /* 샤프라인 강조 테두리 */
-      --border-light: #D1DDD6;    /* 1px 서브 헤어라인 테두리 */
-      --text-main: #111C17;       /* 딥 차콜 그린 텍스트 */
-      --text-sub: #52665C;        /* 뮤트 세이지 텍스트 */
-      --danger: #8B2626;          /* 삭제 버튼용 딥 레드 */
+      --bg-color: #F4F7F5;
+      --surface: #FFFFFF;
+      --surface-sub: #F9FBFA;
+      --primary: #143D2B;
+      --primary-hover: #1E563D;
+      --accent-soft: #E6F0EC;
+      --border-strong: #143D2B;
+      --border-light: #D1DDD6;
+      --text-main: #111C17;
+      --text-sub: #52665C;
+      --danger: #8B2626;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      border-radius: 0 !important; /* 모든 요소 직각(샤프라인) 강제 */
+      border-radius: 0 !important;
     }
 
     body {
@@ -49,7 +48,6 @@
       border: 1px solid var(--border-strong);
     }
 
-    /* 상단 헤더 영역 */
     header {
       padding: 28px 36px;
       border-bottom: 1px solid var(--border-strong);
@@ -118,7 +116,6 @@
       color: #FFFFFF;
     }
 
-    /* 편집 툴바 (편집 모드 활성화 시 노출) */
     .edit-toolbar {
       display: none;
       background: var(--accent-soft);
@@ -147,7 +144,6 @@
       flex-wrap: wrap;
     }
 
-    /* 메인 탭 네비게이션 */
     .tab-menu {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -182,7 +178,6 @@
       color: #FFFFFF;
     }
 
-    /* 메인 콘텐츠 영역 */
     .tab-content {
       display: none;
       padding: 36px;
@@ -198,7 +193,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* INFO 섹션 스타일 */
     .profile-grid {
       display: grid;
       grid-template-columns: 110px 1fr;
@@ -322,7 +316,6 @@
       display: flex;
     }
 
-    /* 입력 폼 공통 스타일 */
     .sharp-input, .sharp-textarea {
       width: 100%;
       border: 1px solid var(--border-strong);
@@ -362,7 +355,6 @@
       text-transform: uppercase;
     }
 
-    /* ARCHIVE 폴더 탭 네비게이션 */
     .folder-menu {
       display: flex;
       border: 1px solid var(--border-strong);
@@ -399,7 +391,6 @@
       color: #FFFFFF;
     }
 
-    /* 새 아카이브 추가 버튼 (편집 모드 전용) */
     .add-item-bar {
       display: none;
       margin-bottom: 20px;
@@ -427,9 +418,6 @@
       color: #FFFFFF;
     }
 
-    /* =========================================
-       페르소나 증명사진 그리드 (보기 모드)
-       ========================================= */
     .persona-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
@@ -453,7 +441,7 @@
 
     .persona-id-photo {
       width: 100%;
-      aspect-ratio: 3 / 4; /* 증명사진 비율 */
+      aspect-ratio: 3 / 4;
       background: var(--surface-sub);
       border-bottom: 1px solid var(--border-strong);
       display: flex;
@@ -461,7 +449,6 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      position: relative;
       color: var(--text-sub);
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.72rem;
@@ -494,9 +481,6 @@
       opacity: 0.75;
     }
 
-    /* =========================================
-       페르소나 확대 모달 (상세 보기)
-       ========================================= */
     .modal-backdrop {
       display: none;
       position: fixed;
@@ -632,7 +616,6 @@
       color: var(--text-sub);
     }
 
-    /* 기본 정보 (복붙 X) */
     .readonly-text {
       padding: 14px;
       font-family: 'Noto Sans KR', sans-serif;
@@ -640,10 +623,9 @@
       line-height: 1.65;
       color: var(--text-main);
       white-space: pre-wrap;
-      user-select: none; /* 드래그/복사 방지 */
+      user-select: none;
     }
 
-    /* 프롬프트 / 의상 프롬프트 (복붙 O) */
     .copyable-text {
       padding: 14px;
       font-family: 'JetBrains Mono', 'Noto Sans KR', sans-serif;
@@ -655,7 +637,6 @@
       user-select: all;
     }
 
-    /* 일반 ARCHIVE 아이템 카드 (프롬프트/OOC/OTHER 및 편집 모드용) */
     .archive-item {
       border: 1px solid var(--border-strong);
       background: var(--surface);
@@ -726,7 +707,6 @@
       color: #FFFFFF;
     }
 
-    /* 이미지 첨부 영역 */
     .archive-media {
       border-bottom: 1px solid var(--border-light);
       background: var(--surface-sub);
@@ -787,12 +767,10 @@
       font-size: 0.85rem;
     }
 
-    /* 숨겨진 파일 인풋 */
     input[type="file"] {
       display: none;
     }
 
-    /* 알림 토스트 */
     #toast {
       position: fixed;
       bottom: 28px;
@@ -815,7 +793,6 @@
       transform: translateY(0);
     }
 
-    /* 모바일 대응 */
     @media (max-width: 600px) {
       body {
         padding: 16px 12px;
@@ -873,36 +850,32 @@
 <body>
 
   <div class="container">
-    <!-- 상단 헤더 -->
     <header>
       <div>
         <span class="header-meta">PERSONAL DIRECTORY // EDITABLE</span>
         <h1>INFO & ARCHIVE</h1>
       </div>
       <div class="header-controls">
-        <button id="toggleEditBtn" class="btn-sharp" onclick="toggleEditMode()">✎ EDIT MODE</button>
+        <button id="toggleEditBtn" type="button" class="btn-sharp" onclick="toggleEditMode()">✎ EDIT MODE</button>
       </div>
     </header>
 
-    <!-- 편집 모드 전용 상단 툴바 -->
     <div class="edit-toolbar">
       <span class="toolbar-info">● EDITING (자동 저장됨)</span>
       <div class="toolbar-actions">
-        <button class="btn-sharp" onclick="exportHTML()">⬇ HTML 파일로 저장</button>
-        <button class="btn-sharp" onclick="exportJSON()">📤 백업(JSON)</button>
-        <button class="btn-sharp" onclick="document.getElementById('importJsonInput').click()">📥 복원</button>
-        <button class="btn-sharp danger" onclick="resetData()">↺ 초기화</button>
+        <button type="button" class="btn-sharp" onclick="exportHTML()">⬇ HTML 파일로 저장</button>
+        <button type="button" class="btn-sharp" onclick="exportJSON()">📤 백업(JSON)</button>
+        <button type="button" class="btn-sharp" onclick="document.getElementById('importJsonInput').click()">📥 복원</button>
+        <button type="button" class="btn-sharp danger" onclick="resetData()">↺ 초기화</button>
         <input type="file" id="importJsonInput" accept=".json" onchange="importJSON(event)">
       </div>
     </div>
 
-    <!-- 메인 탭 버튼 -->
     <nav class="tab-menu">
-      <button class="tab-btn active" onclick="openTab('info', this)">01. INFO</button>
-      <button class="tab-btn" onclick="openTab('archive', this)">02. ARCHIVE</button>
+      <button id="tabBtnInfo" type="button" class="tab-btn active" onclick="openTab('info', this)">01. INFO</button>
+      <button id="tabBtnArchive" type="button" class="tab-btn" onclick="openTab('archive', this)">02. ARCHIVE</button>
     </nav>
 
-    <!-- 1. INFO 탭 내용 -->
     <section id="info" class="tab-content active">
       <div class="profile-grid">
         <div class="avatar-wrapper">
@@ -912,46 +885,33 @@
           <label class="avatar-edit-overlay" for="avatarInput">CHANGE<br>IMAGE</label>
           <input type="file" id="avatarInput" accept="image/*" onchange="handleAvatarUpload(event)">
         </div>
-        <div class="profile-info" id="profileInfoArea">
-          <!-- JS로 렌더링 -->
-        </div>
+        <div class="profile-info" id="profileInfoArea"></div>
       </div>
 
       <span class="section-label">Keywords & Tags</span>
-      <div class="tag-list" id="tagListArea">
-        <!-- JS로 렌더링 -->
-      </div>
+      <div class="tag-list" id="tagListArea"></div>
       <div class="tag-add-box">
         <input type="text" id="newTagInput" class="sharp-input" placeholder="새 태그 입력 (예: #ARCHIVING)" style="max-width: 240px;" onkeydown="if(event.key==='Enter') addTag()">
-        <button class="btn-sharp" onclick="addTag()">+ ADD</button>
+        <button type="button" class="btn-sharp" onclick="addTag()">+ ADD</button>
       </div>
     </section>
 
-    <!-- 2. ARCHIVE 탭 내용 -->
     <section id="archive" class="tab-content">
-      
-      <!-- 폴더 선택 메뉴 -->
       <div class="folder-menu">
-        <button class="folder-btn active" data-folder="persona" onclick="filterFolder('persona', this)">페르소나</button>
-        <button class="folder-btn" data-folder="prompt" onclick="filterFolder('prompt', this)">프롬프트</button>
-        <button class="folder-btn" data-folder="ooc" onclick="filterFolder('ooc', this)">OOC</button>
-        <button class="folder-btn" data-folder="other" onclick="filterFolder('other', this)">OTHER</button>
+        <button type="button" class="folder-btn active" data-folder="persona" onclick="filterFolder('persona', this)">페르소나</button>
+        <button type="button" class="folder-btn" data-folder="prompt" onclick="filterFolder('prompt', this)">프롬프트</button>
+        <button type="button" class="folder-btn" data-folder="ooc" onclick="filterFolder('ooc', this)">OOC</button>
+        <button type="button" class="folder-btn" data-folder="other" onclick="filterFolder('other', this)">OTHER</button>
       </div>
 
-      <!-- 편집 모드 시 새 항목 추가 버튼 -->
       <div class="add-item-bar">
-        <button class="add-item-btn" onclick="addNewArchiveItem()">+ 현재 폴더에 새 아카이브 추가</button>
+        <button type="button" class="add-item-btn" onclick="addNewArchiveItem()">+ 현재 폴더에 새 아카이브 추가</button>
       </div>
 
-      <!-- 아카이브 카드 리스트 컨테이너 -->
-      <div id="archiveListArea">
-        <!-- JS로 렌더링 -->
-      </div>
-
+      <div id="archiveListArea"></div>
     </section>
   </div>
 
-  <!-- 페르소나 확대 모달 팝업 -->
   <div id="personaModal" class="modal-backdrop" onclick="if(event.target === this) closePersonaModal()">
     <div class="modal-window">
       <div class="modal-header">
@@ -959,98 +919,104 @@
           <span class="modal-badge">PERSONA FILE</span>
           <span class="modal-title" id="modalPersonaTitle">페르소나 이름</span>
         </div>
-        <button class="modal-close-btn" onclick="closePersonaModal()">CLOSE [ESC]</button>
+        <button type="button" class="modal-close-btn" onclick="closePersonaModal()">CLOSE [ESC]</button>
       </div>
-      <div class="modal-body" id="modalPersonaBody">
-        <!-- JS로 동적 렌더링 -->
-      </div>
+      <div class="modal-body" id="modalPersonaBody"></div>
     </div>
   </div>
 
-  <!-- 복사/저장 알림창 -->
   <div id="toast">COPIED TO CLIPBOARD</div>
 
-  <!-- 초기 데이터 영역 -->
-  <script id="initial-data" type="application/json">
-  {
-    "profile": {
-      "name": "닉네임 (Nickname)",
-      "bio": "개인 프로필 및 작업용 텍스트·이미지 아카이브 공간입니다.\n페르소나 시트, 프롬프트, OOC 지시문 및 기타 양식을 정리해 보관합니다.",
-      "avatar": ""
-    },
-    "tags": ["#ARCHIVE", "#PERSONA", "#PROMPT", "#OOC"],
-    "archives": [
-      {
-        "id": "item-1",
-        "folder": "persona",
-        "title": "페르소나 #01",
-        "image": "",
-        "basicInfo": "이름: \n나이 / 성별: \n성격 및 배경 설정: (이 영역은 열람 전용이며 복사 버튼이 제공되지 않습니다.)",
-        "prompt": "1girl, solo, upper body, portrait, looking at viewer, clean lineart",
-        "outfitPrompt": "school uniform, blazer, ribbon, pleated skirt"
-      },
-      {
-        "id": "item-2",
-        "folder": "persona",
-        "title": "페르소나 #02",
-        "image": "",
-        "basicInfo": "이름: \n나이 / 성별: \n성격 및 배경 설정: ",
-        "prompt": "1boy, solo, portrait, sharp eyes, dark hair",
-        "outfitPrompt": "black coat, turtleneck sweater, silver necklace"
-      },
-      {
-        "id": "item-3",
-        "folder": "prompt",
-        "title": "메인 스타일 / 렌더링 프롬프트",
-        "image": "",
-        "text": "여기에 자주 사용하는 시스템 프롬프트나 이미지 생성 태그를 적어두세요."
-      },
-      {
-        "id": "item-4",
-        "folder": "ooc",
-        "title": "전개 및 묘사 조율 OOC",
-        "image": "",
-        "text": "(OOC: 현재 장면의 심리 묘사와 배경 디테일을 조금 더 깊이 있게 서술해 주세요.)"
-      },
-      {
-        "id": "item-5",
-        "folder": "other",
-        "title": "기타 백업 / HTML 코드 양식",
-        "image": "",
-        "text": "상태창 레이아웃, 특수문자, 기타 백업할 텍스트를 자유롭게 보관하세요."
-      }
-    ]
-  }
-  </script>
-
   <script>
-    const STORAGE_KEY = 'sharp_green_archive_v2';
+    const STORAGE_KEY = 'sharp_green_archive_v3';
+
+    const DEFAULT_DATA = {
+      profile: {
+        name: '닉네임 (Nickname)',
+        bio: '개인 프로필 및 작업용 텍스트·이미지 아카이브 공간입니다.\n페르소나 시트, 프롬프트, OOC 지시문 및 기타 양식을 정리해 보관합니다.',
+        avatar: ''
+      },
+      tags: ['#ARCHIVE', '#PERSONA', '#PROMPT', '#OOC'],
+      archives: [
+        {
+          id: 'item-1',
+          folder: 'persona',
+          title: '페르소나 #01',
+          image: '',
+          basicInfo: '이름: \n나이 / 성별: \n성격 및 배경 설정: (이 영역은 열람 전용이며 복사 버튼이 제공되지 않습니다.)',
+          prompt: '1girl, solo, upper body, portrait, looking at viewer, clean lineart',
+          outfitPrompt: 'school uniform, blazer, ribbon, pleated skirt',
+          text: ''
+        },
+        {
+          id: 'item-2',
+          folder: 'persona',
+          title: '페르소나 #02',
+          image: '',
+          basicInfo: '이름: \n나이 / 성별: \n성격 및 배경 설정: ',
+          prompt: '1boy, solo, portrait, sharp eyes, dark hair',
+          outfitPrompt: 'black coat, turtleneck sweater, silver necklace',
+          text: ''
+        },
+        {
+          id: 'item-3',
+          folder: 'prompt',
+          title: '메인 스타일 / 렌더링 프롬프트',
+          image: '',
+          basicInfo: '',
+          prompt: '',
+          outfitPrompt: '',
+          text: '여기에 자주 사용하는 시스템 프롬프트나 이미지 생성 태그를 적어두세요.'
+        },
+        {
+          id: 'item-4',
+          folder: 'ooc',
+          title: '전개 및 묘사 조율 OOC',
+          image: '',
+          basicInfo: '',
+          prompt: '',
+          outfitPrompt: '',
+          text: '(OOC: 현재 장면의 심리 묘사와 배경 디테일을 조금 더 깊이 있게 서술해 주세요.)'
+        },
+        {
+          id: 'item-5',
+          folder: 'other',
+          title: '기타 백업 / HTML 코드 양식',
+          image: '',
+          basicInfo: '',
+          prompt: '',
+          outfitPrompt: '',
+          text: '상태창 레이아웃, 특수문자, 기타 백업할 텍스트를 자유롭게 보관하세요.'
+        }
+      ]
+    };
+
     let appData = null;
     let isEditing = false;
     let currentFolder = 'persona';
 
-    // 초기화
+    function cloneDefaultData() {
+      return JSON.parse(JSON.stringify(DEFAULT_DATA));
+    }
+
     function initApp() {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        try {
-          appData = JSON.parse(saved);
-        } catch (e) {
-          appData = JSON.parse(document.getElementById('initial-data').textContent);
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.profile && Array.isArray(parsed.archives)) {
+            appData = parsed;
+          } else {
+            appData = cloneDefaultData();
+          }
+        } else {
+          appData = cloneDefaultData();
         }
-      } else {
-        appData = JSON.parse(document.getElementById('initial-data').textContent);
+      } catch (e) {
+        appData = cloneDefaultData();
       }
 
-      // 기존 데이터 호환성 마이그레이션 (페르소나 전용 필드 보장)
-      appData.archives.forEach(item => {
-        if (item.folder === 'persona') {
-          if (item.basicInfo === undefined) item.basicInfo = item.text || '';
-          if (item.prompt === undefined) item.prompt = '';
-          if (item.outfitPrompt === undefined) item.outfitPrompt = '';
-        }
-      });
-
+      if (!Array.isArray(appData.tags)) appData.tags = [];
       renderAll();
     }
 
@@ -1068,33 +1034,31 @@
       renderArchives();
     }
 
-    // 1. 프로필 렌더링
     function renderProfile() {
       const avatarEl = document.getElementById('avatarDisplay');
+      if (!avatarEl) return;
       if (appData.profile.avatar) {
-        avatarEl.innerHTML = `<img src="${appData.profile.avatar}" alt="Avatar">`;
+        avatarEl.innerHTML = '<img src="' + appData.profile.avatar + '" alt="Avatar">';
       } else {
-        avatarEl.innerHTML = `<span>IMG_01</span>`;
+        avatarEl.innerHTML = '<span>IMG_01</span>';
       }
 
       const infoArea = document.getElementById('profileInfoArea');
+      if (!infoArea) return;
+
       if (isEditing) {
-        infoArea.innerHTML = `
-          <div style="margin-bottom: 10px;">
-            <input type="text" class="sharp-input" value="${escapeHtml(appData.profile.name)}" 
-              placeholder="닉네임" onchange="updateProfile('name', this.value)" style="font-weight:700; font-size:1.1rem;">
-          </div>
-          <div>
-            <textarea class="sharp-textarea" style="min-height:80px;" placeholder="자기소개 입력" 
-              onchange="updateProfile('bio', this.value)">${escapeHtml(appData.profile.bio)}</textarea>
-          </div>
-          ${appData.profile.avatar ? `<button class="btn-sharp danger" style="margin-top:8px;" onclick="updateProfile('avatar', '')">프로필 이미지 삭제</button>` : ''}
-        `;
+        infoArea.innerHTML =
+          '<div style="margin-bottom: 10px;">' +
+            '<input type="text" class="sharp-input" value="' + escapeHtml(appData.profile.name) + '" placeholder="닉네임" onchange="updateProfile(\'name\', this.value)" style="font-weight:700; font-size:1.1rem;">' +
+          '</div>' +
+          '<div>' +
+            '<textarea class="sharp-textarea" style="min-height:80px;" placeholder="자기소개 입력" onchange="updateProfile(\'bio\', this.value)">' + escapeHtml(appData.profile.bio) + '</textarea>' +
+          '</div>' +
+          (appData.profile.avatar ? '<button type="button" class="btn-sharp danger" style="margin-top:8px;" onclick="updateProfile(\'avatar\', \'\')">프로필 이미지 삭제</button>' : '');
       } else {
-        infoArea.innerHTML = `
-          <h2>${escapeHtml(appData.profile.name)}</h2>
-          <p>${escapeHtml(appData.profile.bio)}</p>
-        `;
+        infoArea.innerHTML =
+          '<h2>' + escapeHtml(appData.profile.name) + '</h2>' +
+          '<p>' + escapeHtml(appData.profile.bio) + '</p>';
       }
     }
 
@@ -1107,22 +1071,22 @@
     function handleAvatarUpload(event) {
       const file = event.target.files[0];
       if (!file) return;
-      compressImage(file, 400, (base64) => {
+      compressImage(file, 400, function(base64) {
         updateProfile('avatar', base64);
         showToast('프로필 이미지가 변경되었습니다.');
       });
       event.target.value = '';
     }
 
-    // 2. 태그 렌더링
     function renderTags() {
       const tagArea = document.getElementById('tagListArea');
-      tagArea.innerHTML = appData.tags.map((tag, index) => `
-        <span class="tag">
-          ${escapeHtml(tag)}
-          <button class="tag-remove" onclick="removeTag(${index})">×</button>
-        </span>
-      `).join('');
+      if (!tagArea) return;
+      tagArea.innerHTML = appData.tags.map(function(tag, index) {
+        return '<span class="tag">' +
+          escapeHtml(tag) +
+          '<button type="button" class="tag-remove" onclick="removeTag(' + index + ')">×</button>' +
+        '</span>';
+      }).join('');
     }
 
     function addTag() {
@@ -1142,201 +1106,168 @@
       renderTags();
     }
 
-    // 3. 아카이브 리스트 렌더링
     function renderArchives() {
       const listArea = document.getElementById('archiveListArea');
-      const filtered = appData.archives.filter(item => item.folder === currentFolder);
+      if (!listArea) return;
+      const filtered = appData.archives.filter(function(item) {
+        return item.folder === currentFolder;
+      });
 
       if (filtered.length === 0) {
-        listArea.innerHTML = `<div class="empty-state">이 폴더에는 아직 등록된 자료가 없습니다.</div>`;
+        listArea.innerHTML = '<div class="empty-state">이 폴더에는 아직 등록된 자료가 없습니다.</div>';
         return;
       }
 
-      // [A] 페르소나 폴더 전용 렌더링
       if (currentFolder === 'persona') {
         if (isEditing) {
-          // 페르소나 편집 모드: 증명사진 + 기본정보 + 프롬프트 + 의상프롬프트 입력 폼
-          listArea.innerHTML = filtered.map(item => `
-            <div class="archive-item">
-              <div class="archive-header">
-                <div class="title-group">
-                  <span class="folder-tag">PERSONA</span>
-                  <input type="text" class="sharp-input" value="${escapeHtml(item.title)}" 
-                    placeholder="페르소나 이름" onchange="updateArchive('${item.id}', 'title', this.value)">
-                </div>
-                <div class="item-actions">
-                  <button class="btn-sharp danger" onclick="deleteArchive('${item.id}')">DELETE</button>
-                </div>
-              </div>
-              <div class="archive-media id-ratio">
-                ${item.image ? `<img src="${item.image}" alt="ID Photo">` : `<span style="font-family:'JetBrains Mono'; font-size:0.76rem; color:var(--text-sub);">[ 증명사진 슬롯 (3:4) ]</span>`}
-                <div class="media-controls">
-                  <label class="btn-sharp">
-                    + 증명사진 업로드
-                    <input type="file" accept="image/*" onchange="handleArchiveImageUpload(event, '${item.id}')">
-                  </label>
-                  ${item.image ? `<button class="btn-sharp danger" onclick="updateArchive('${item.id}', 'image', '')">사진 제거</button>` : ''}
-                </div>
-              </div>
-              <div class="edit-body-wrapper">
-                <div class="field-group">
-                  <label class="field-label">기본 정보 (확대 시 열람 전용 / 복붙 X)</label>
-                  <textarea class="sharp-textarea" style="min-height:90px;" placeholder="캐릭터 이름, 나이, 설정 등 기본 정보를 입력하세요." 
-                    onchange="updateArchive('${item.id}', 'basicInfo', this.value)">${escapeHtml(item.basicInfo || '')}</textarea>
-                </div>
-                <div class="field-group">
-                  <label class="field-label">프롬프트 (복붙 O)</label>
-                  <textarea class="sharp-textarea" style="min-height:80px;" placeholder="캐릭터 외형 및 특징 프롬프트를 입력하세요." 
-                    onchange="updateArchive('${item.id}', 'prompt', this.value)">${escapeHtml(item.prompt || '')}</textarea>
-                </div>
-                <div class="field-group">
-                  <label class="field-label">의상 프롬프트 (복붙 O)</label>
-                  <textarea class="sharp-textarea" style="min-height:70px;" placeholder="의상 관련 프롬프트를 입력하세요." 
-                    onchange="updateArchive('${item.id}', 'outfitPrompt', this.value)">${escapeHtml(item.outfitPrompt || '')}</textarea>
-                </div>
-              </div>
-            </div>
-          `).join('');
+          listArea.innerHTML = filtered.map(function(item) {
+            return '<div class="archive-item">' +
+              '<div class="archive-header">' +
+                '<div class="title-group">' +
+                  '<span class="folder-tag">PERSONA</span>' +
+                  '<input type="text" class="sharp-input" value="' + escapeHtml(item.title) + '" placeholder="페르소나 이름" onchange="updateArchive(\'' + item.id + '\', \'title\', this.value)">' +
+                '</div>' +
+                '<div class="item-actions">' +
+                  '<button type="button" class="btn-sharp danger" onclick="deleteArchive(\'' + item.id + '\')">DELETE</button>' +
+                '</div>' +
+              '</div>' +
+              '<div class="archive-media id-ratio">' +
+                (item.image ? '<img src="' + item.image + '" alt="ID Photo">' : '<span style="font-family:\'JetBrains Mono\'; font-size:0.76rem; color:var(--text-sub);">[ 증명사진 슬롯 (3:4) ]</span>') +
+                '<div class="media-controls">' +
+                  '<label class="btn-sharp">+ 증명사진 업로드<input type="file" accept="image/*" onchange="handleArchiveImageUpload(event, \'' + item.id + '\')"></label>' +
+                  (item.image ? '<button type="button" class="btn-sharp danger" onclick="updateArchive(\'' + item.id + '\', \'image\', \'\')">사진 제거</button>' : '') +
+                '</div>' +
+              '</div>' +
+              '<div class="edit-body-wrapper">' +
+                '<div class="field-group">' +
+                  '<label class="field-label">기본 정보 (확대 시 열람 전용 / 복붙 X)</label>' +
+                  '<textarea class="sharp-textarea" style="min-height:90px;" placeholder="캐릭터 이름, 나이, 설정 등 기본 정보를 입력하세요." onchange="updateArchive(\'' + item.id + '\', \'basicInfo\', this.value)">' + escapeHtml(item.basicInfo || '') + '</textarea>' +
+                '</div>' +
+                '<div class="field-group">' +
+                  '<label class="field-label">프롬프트 (복붙 O)</label>' +
+                  '<textarea class="sharp-textarea" style="min-height:80px;" placeholder="캐릭터 외형 및 특징 프롬프트를 입력하세요." onchange="updateArchive(\'' + item.id + '\', \'prompt\', this.value)">' + escapeHtml(item.prompt || '') + '</textarea>' +
+                '</div>' +
+                '<div class="field-group">' +
+                  '<label class="field-label">의상 프롬프트 (복붙 O)</label>' +
+                  '<textarea class="sharp-textarea" style="min-height:70px;" placeholder="의상 관련 프롬프트를 입력하세요." onchange="updateArchive(\'' + item.id + '\', \'outfitPrompt\', this.value)">' + escapeHtml(item.outfitPrompt || '') + '</textarea>' +
+                '</div>' +
+              '</div>' +
+            '</div>';
+          }).join('');
         } else {
-          // 페르소나 보기 모드: 증명사진 그리드 (클릭 시 확대 모달 오픈)
-          listArea.innerHTML = `
-            <div class="persona-grid">
-              ${filtered.map(item => `
-                <div class="persona-id-card" onclick="openPersonaModal('${item.id}')">
-                  <div class="persona-id-photo">
-                    ${item.image ? `<img src="${item.image}" alt="${escapeHtml(item.title)}">` : `<span>NO PHOTO</span>`}
-                  </div>
-                  <div class="persona-id-name">${escapeHtml(item.title)}</div>
-                  <div class="persona-id-hint">[ CLICK TO EXPAND ]</div>
-                </div>
-              `).join('')}
-            </div>
-          `;
+          listArea.innerHTML = '<div class="persona-grid">' +
+            filtered.map(function(item) {
+              return '<div class="persona-id-card" onclick="openPersonaModal(\'' + item.id + '\')">' +
+                '<div class="persona-id-photo">' +
+                  (item.image ? '<img src="' + item.image + '" alt="' + escapeHtml(item.title) + '">' : '<span>NO PHOTO</span>') +
+                '</div>' +
+                '<div class="persona-id-name">' + escapeHtml(item.title) + '</div>' +
+                '<div class="persona-id-hint">[ CLICK TO EXPAND ]</div>' +
+              '</div>';
+            }).join('') +
+          '</div>';
         }
         return;
       }
 
-      // [B] 그 외 폴더 (프롬프트 / OOC / OTHER) 렌더링
-      listArea.innerHTML = filtered.map(item => {
+      listArea.innerHTML = filtered.map(function(item) {
         const supportsImage = (item.folder === 'prompt');
-        
         if (isEditing) {
-          return `
-            <div class="archive-item">
-              <div class="archive-header">
-                <div class="title-group">
-                  <span class="folder-tag">${item.folder.toUpperCase()}</span>
-                  <input type="text" class="sharp-input" value="${escapeHtml(item.title)}" 
-                    placeholder="제목 입력" onchange="updateArchive('${item.id}', 'title', this.value)">
-                </div>
-                <div class="item-actions">
-                  <button class="btn-sharp danger" onclick="deleteArchive('${item.id}')">DELETE</button>
-                </div>
-              </div>
-              ${supportsImage ? `
-                <div class="archive-media">
-                  ${item.image ? `<img src="${item.image}" alt="preview">` : `<span style="font-family:'JetBrains Mono'; font-size:0.78rem; color:var(--text-sub);">[ 첨부된 이미지 없음 ]</span>`}
-                  <div class="media-controls">
-                    <label class="btn-sharp">
-                      + 이미지 업로드
-                      <input type="file" accept="image/*" onchange="handleArchiveImageUpload(event, '${item.id}')">
-                    </label>
-                    ${item.image ? `<button class="btn-sharp danger" onclick="updateArchive('${item.id}', 'image', '')">이미지 제거</button>` : ''}
-                  </div>
-                </div>
-              ` : ''}
-              <div class="edit-body-wrapper">
-                <textarea class="sharp-textarea" placeholder="복사할 텍스트 내용을 입력하세요." 
-                  onchange="updateArchive('${item.id}', 'text', this.value)">${escapeHtml(item.text || '')}</textarea>
-              </div>
-            </div>
-          `;
+          return '<div class="archive-item">' +
+            '<div class="archive-header">' +
+              '<div class="title-group">' +
+                '<span class="folder-tag">' + item.folder.toUpperCase() + '</span>' +
+                '<input type="text" class="sharp-input" value="' + escapeHtml(item.title) + '" placeholder="제목 입력" onchange="updateArchive(\'' + item.id + '\', \'title\', this.value)">' +
+              '</div>' +
+              '<div class="item-actions">' +
+                '<button type="button" class="btn-sharp danger" onclick="deleteArchive(\'' + item.id + '\')">DELETE</button>' +
+              '</div>' +
+            '</div>' +
+            (supportsImage ?
+              '<div class="archive-media">' +
+                (item.image ? '<img src="' + item.image + '" alt="preview">' : '<span style="font-family:\'JetBrains Mono\'; font-size:0.78rem; color:var(--text-sub);">[ 첨부된 이미지 없음 ]</span>') +
+                '<div class="media-controls">' +
+                  '<label class="btn-sharp">+ 이미지 업로드<input type="file" accept="image/*" onchange="handleArchiveImageUpload(event, \'' + item.id + '\')"></label>' +
+                  (item.image ? '<button type="button" class="btn-sharp danger" onclick="updateArchive(\'' + item.id + '\', \'image\', \'\')">이미지 제거</button>' : '') +
+                '</div>' +
+              '</div>' : '') +
+            '<div class="edit-body-wrapper">' +
+              '<textarea class="sharp-textarea" placeholder="복사할 텍스트 내용을 입력하세요." onchange="updateArchive(\'' + item.id + '\', \'text\', this.value)">' + escapeHtml(item.text || '') + '</textarea>' +
+            '</div>' +
+          '</div>';
         } else {
-          return `
-            <div class="archive-item">
-              <div class="archive-header">
-                <div class="title-group">
-                  <span class="folder-tag">${item.folder.toUpperCase()}</span>
-                  <span class="archive-title">${escapeHtml(item.title)}</span>
-                </div>
-                <div class="item-actions">
-                  <button class="copy-btn" onclick="copyPlainText('${item.id}', 'text', this)">COPY</button>
-                </div>
-              </div>
-              ${(supportsImage && item.image) ? `
-                <div class="archive-media">
-                  <img src="${item.image}" alt="${escapeHtml(item.title)}">
-                </div>
-              ` : ''}
-              <div class="archive-text">${escapeHtml(item.text || '')}</div>
-            </div>
-          `;
+          return '<div class="archive-item">' +
+            '<div class="archive-header">' +
+              '<div class="title-group">' +
+                '<span class="folder-tag">' + item.folder.toUpperCase() + '</span>' +
+                '<span class="archive-title">' + escapeHtml(item.title) + '</span>' +
+              '</div>' +
+              '<div class="item-actions">' +
+                '<button type="button" class="copy-btn" onclick="copyPlainText(\'' + item.id + '\', \'text\', this)">COPY</button>' +
+              '</div>' +
+            '</div>' +
+            ((supportsImage && item.image) ? '<div class="archive-media"><img src="' + item.image + '" alt="' + escapeHtml(item.title) + '"></div>' : '') +
+            '<div class="archive-text">' + escapeHtml(item.text || '') + '</div>' +
+          '</div>';
         }
       }).join('');
     }
 
-    // 페르소나 확대 모달 열기/닫기
     function openPersonaModal(id) {
-      const item = appData.archives.find(i => i.id === id);
+      const item = appData.archives.find(function(i) { return i.id === id; });
       if (!item) return;
 
       document.getElementById('modalPersonaTitle').innerText = item.title;
       const modalBody = document.getElementById('modalPersonaBody');
 
-      modalBody.innerHTML = `
-        <div class="modal-top-split">
-          <div class="modal-photo">
-            ${item.image ? `<img src="${item.image}" alt="${escapeHtml(item.title)}">` : `<span>NO PHOTO</span>`}
-          </div>
-          <!-- 1. 기본 정보 (복붙 X) -->
-          <div class="modal-section-box">
-            <div class="modal-section-header">
-              <span class="modal-section-label">기본 정보 (BASIC INFO)</span>
-              <span class="no-copy-badge">READ ONLY</span>
-            </div>
-            <div class="readonly-text">${escapeHtml(item.basicInfo || '등록된 기본 정보가 없습니다.')}</div>
-          </div>
-        </div>
-
-        <!-- 2. 프롬프트 (복붙 O) -->
-        <div class="modal-section-box">
-          <div class="modal-section-header">
-            <span class="modal-section-label">프롬프트 (PROMPT)</span>
-            <button class="copy-btn" onclick="copyPlainText('${item.id}', 'prompt', this)">COPY</button>
-          </div>
-          <div class="copyable-text">${escapeHtml(item.prompt || '')}</div>
-        </div>
-
-        <!-- 3. 의상 프롬프트 (복붙 O) -->
-        <div class="modal-section-box">
-          <div class="modal-section-header">
-            <span class="modal-section-label">의상 프롬프트 (OUTFIT PROMPT)</span>
-            <button class="copy-btn" onclick="copyPlainText('${item.id}', 'outfitPrompt', this)">COPY</button>
-          </div>
-          <div class="copyable-text">${escapeHtml(item.outfitPrompt || '')}</div>
-        </div>
-      `;
+      modalBody.innerHTML =
+        '<div class="modal-top-split">' +
+          '<div class="modal-photo">' +
+            (item.image ? '<img src="' + item.image + '" alt="' + escapeHtml(item.title) + '">' : '<span>NO PHOTO</span>') +
+          '</div>' +
+          '<div class="modal-section-box">' +
+            '<div class="modal-section-header">' +
+              '<span class="modal-section-label">기본 정보 (BASIC INFO)</span>' +
+              '<span class="no-copy-badge">READ ONLY</span>' +
+            '</div>' +
+            '<div class="readonly-text">' + escapeHtml(item.basicInfo || '등록된 기본 정보가 없습니다.') + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="modal-section-box">' +
+          '<div class="modal-section-header">' +
+            '<span class="modal-section-label">프롬프트 (PROMPT)</span>' +
+            '<button type="button" class="copy-btn" onclick="copyPlainText(\'' + item.id + '\', \'prompt\', this)">COPY</button>' +
+          '</div>' +
+          '<div class="copyable-text">' + escapeHtml(item.prompt || '') + '</div>' +
+        '</div>' +
+        '<div class="modal-section-box">' +
+          '<div class="modal-section-header">' +
+            '<span class="modal-section-label">의상 프롬프트 (OUTFIT PROMPT)</span>' +
+            '<button type="button" class="copy-btn" onclick="copyPlainText(\'' + item.id + '\', \'outfitPrompt\', this)">COPY</button>' +
+          '</div>' +
+          '<div class="copyable-text">' + escapeHtml(item.outfitPrompt || '') + '</div>' +
+        '</div>';
 
       document.getElementById('personaModal').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
 
     function closePersonaModal() {
-      document.getElementById('personaModal').classList.remove('open');
+      const modal = document.getElementById('personaModal');
+      if (modal) modal.classList.remove('open');
       document.body.style.overflow = '';
     }
 
-    // ESC 키로 모달 닫기
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closePersonaModal();
     });
 
     function addNewArchiveItem() {
-      const count = appData.archives.filter(i => i.folder === currentFolder).length + 1;
+      const count = appData.archives.filter(function(i) { return i.folder === currentFolder; }).length + 1;
       const newItem = {
         id: 'item-' + Date.now(),
         folder: currentFolder,
-        title: currentFolder === 'persona' ? `페르소나 #0${count}` : `새 항목 #${count}`,
+        title: currentFolder === 'persona' ? '페르소나 #' + count : '새 항목 #' + count,
         image: '',
         basicInfo: '',
         prompt: '',
@@ -1350,7 +1281,7 @@
     }
 
     function updateArchive(id, field, value) {
-      const target = appData.archives.find(item => item.id === id);
+      const target = appData.archives.find(function(item) { return item.id === id; });
       if (target) {
         target[field] = value;
         saveData();
@@ -1360,7 +1291,7 @@
 
     function deleteArchive(id) {
       if (!confirm('이 아카이브 항목을 삭제하시겠습니까?')) return;
-      appData.archives = appData.archives.filter(item => item.id !== id);
+      appData.archives = appData.archives.filter(function(item) { return item.id !== id; });
       saveData();
       renderArchives();
       showToast('항목이 삭제되었습니다.');
@@ -1369,87 +1300,93 @@
     function handleArchiveImageUpload(event, id) {
       const file = event.target.files[0];
       if (!file) return;
-      compressImage(file, 800, (base64) => {
+      compressImage(file, 800, function(base64) {
         updateArchive(id, 'image', base64);
         showToast('이미지가 첨부되었습니다.');
       });
       event.target.value = '';
     }
 
-    // 편집 모드 토글
     function toggleEditMode() {
       isEditing = !isEditing;
       const btn = document.getElementById('toggleEditBtn');
       if (isEditing) {
         closePersonaModal();
         document.body.classList.add('is-editing');
-        btn.classList.add('active-mode');
-        btn.innerText = '✓ DONE';
+        if (btn) {
+          btn.classList.add('active-mode');
+          btn.innerText = '✓ DONE';
+        }
       } else {
         document.body.classList.remove('is-editing');
-        btn.classList.remove('active-mode');
-        btn.innerText = '✎ EDIT MODE';
+        if (btn) {
+          btn.classList.remove('active-mode');
+          btn.innerText = '✎ EDIT MODE';
+        }
         saveData();
         showToast('변경사항이 저장되었습니다.');
       }
       renderAll();
     }
 
-    // 메인 탭 전환
     function openTab(tabName, btnElement) {
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+      document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
       document.getElementById(tabName).classList.add('active');
-      btnElement.classList.add('active');
+      if (btnElement) btnElement.classList.add('active');
     }
 
-    // 폴더 필터 전환
     function filterFolder(folderName, btnElement) {
       currentFolder = folderName;
-      document.querySelectorAll('.folder-btn').forEach(b => b.classList.remove('active'));
-      btnElement.classList.add('active');
+      document.querySelectorAll('.folder-btn').forEach(function(b) { b.classList.remove('active'); });
+      if (btnElement) btnElement.classList.add('active');
       renderArchives();
     }
 
-    // 필드 지정 텍스트 복사
     function copyPlainText(id, field, btnElement) {
-      const target = appData.archives.find(item => item.id === id);
+      const target = appData.archives.find(function(item) { return item.id === id; });
       if (!target) return;
       const textToCopy = target[field] || '';
 
-      navigator.clipboard.writeText(textToCopy).then(() => {
+      navigator.clipboard.writeText(textToCopy).then(function() {
         const originalText = btnElement.innerText;
         btnElement.innerText = 'COPIED';
         btnElement.classList.add('copied');
         showToast('COPIED TO CLIPBOARD');
-        setTimeout(() => {
+        setTimeout(function() {
           btnElement.innerText = originalText;
           btnElement.classList.remove('copied');
         }, 1500);
-      }).catch(() => {
+      }).catch(function() {
         alert('복사에 실패했습니다. 텍스트를 직접 선택하여 복사해주세요.');
       });
     }
 
-    // 현재 편집된 내용이 반영된 단독 index.html 파일로 내보내기
     function exportHTML() {
       const cloneDoc = document.documentElement.cloneNode(true);
       cloneDoc.querySelector('body').classList.remove('is-editing');
       cloneDoc.querySelector('body').style.overflow = '';
       cloneDoc.querySelector('#personaModal').classList.remove('open');
       const editBtn = cloneDoc.querySelector('#toggleEditBtn');
-      editBtn.classList.remove('active-mode');
-      editBtn.innerText = '✎ EDIT MODE';
+      if (editBtn) {
+        editBtn.classList.remove('active-mode');
+        editBtn.innerText = '✎ EDIT MODE';
+      }
 
-      const dataScript = cloneDoc.querySelector('#initial-data');
-      dataScript.textContent = '\n  ' + JSON.stringify(appData, null, 2) + '\n  ';
+      const scripts = cloneDoc.querySelectorAll('script');
+      const lastScript = scripts[scripts.length - 1];
+      if (lastScript) {
+        lastScript.textContent = lastScript.textContent.replace(
+          /const DEFAULT_DATA = \{[\s\S]*?\n    \};/,
+          'const DEFAULT_DATA = ' + JSON.stringify(appData, null, 2) + ';'
+        );
+      }
 
       const finalHtml = '<!DOCTYPE html>\n' + cloneDoc.outerHTML;
       downloadFile(finalHtml, 'index.html', 'text/html');
       showToast('최신 데이터가 반영된 index.html 다운로드 완료');
     }
 
-    // JSON 백업 및 복원
     function exportJSON() {
       const jsonStr = JSON.stringify(appData, null, 2);
       downloadFile(jsonStr, 'archive-backup.json', 'application/json');
@@ -1460,10 +1397,10 @@
       const file = event.target.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = (e) => {
+      reader.onload = function(e) {
         try {
           const parsed = JSON.parse(e.target.result);
-          if (parsed.profile && parsed.archives) {
+          if (parsed && parsed.profile && Array.isArray(parsed.archives)) {
             appData = parsed;
             saveData();
             renderAll();
@@ -1482,17 +1419,16 @@
     function resetData() {
       if (!confirm('브라우저에 저장된 수정 내역을 지우고 초기 상태로 되돌리시겠습니까?')) return;
       localStorage.removeItem(STORAGE_KEY);
-      appData = JSON.parse(document.getElementById('initial-data').textContent);
+      appData = cloneDefaultData();
       renderAll();
       showToast('초기 데이터로 복원되었습니다.');
     }
 
-    // 이미지 리사이즈/압축
     function compressImage(file, maxWidth, callback) {
       const reader = new FileReader();
-      reader.onload = (e) => {
+      reader.onload = function(e) {
         const img = new Image();
-        img.onload = () => {
+        img.onload = function() {
           const canvas = document.createElement('canvas');
           let width = img.width;
           let height = img.height;
@@ -1523,21 +1459,28 @@
 
     function escapeHtml(str) {
       if (!str) return '';
-      return str.replace(/[&<>"']/g, (m) => ({
-        '&': '&', '<': '<', '>': '>', '"': '"', "'": '''
-      }[m]));
+      return String(str).replace(/[&<>"']/g, function(m) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[m];
+      });
     }
 
     function showToast(msg) {
       const toast = document.getElementById('toast');
+      if (!toast) return;
       toast.innerText = msg;
       toast.classList.add('show');
-      setTimeout(() => {
+      setTimeout(function() {
         toast.classList.remove('show');
       }, 2200);
     }
 
-    initApp();
+    window.addEventListener('DOMContentLoaded', initApp);
   </script>
 
 </body>
